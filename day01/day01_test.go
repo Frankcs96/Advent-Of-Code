@@ -6,7 +6,6 @@ import (
 
 func TestExampleSolution(t *testing.T) {
 
-
 	solution := Solution("input-example.txt")
 	expected := 7
 
@@ -16,7 +15,6 @@ func TestExampleSolution(t *testing.T) {
 
 }
 func TestExampleSolutionPartTwo(t *testing.T) {
-
 
 	solution := SolutionPartTwo("input-example.txt")
 	expected := 5
@@ -28,7 +26,6 @@ func TestExampleSolutionPartTwo(t *testing.T) {
 }
 func TestSolution(t *testing.T) {
 
-
 	solution := Solution("input.txt")
 	expected := 1298
 
@@ -38,7 +35,6 @@ func TestSolution(t *testing.T) {
 
 }
 func TestSolutionPartTwo(t *testing.T) {
-
 
 	solution := SolutionPartTwo("input.txt")
 	expected := 1248

@@ -6,13 +6,10 @@ import (
 
 func TestExampleSolution(t *testing.T) {
 
-
-  solution := Solution()
-  gamma := 22
-  epsilon := 9
+	solution := Solution()
+	gamma := 22
+	epsilon := 9
 	expected := gamma * epsilon
-  
-  
 
 	if solution != expected {
 		t.Errorf("fail expecting %d got %d", expected, solution)
@@ -21,8 +18,7 @@ func TestExampleSolution(t *testing.T) {
 }
 func TestExampleSolutionDayTwo(t *testing.T) {
 
-
-  solution := SolutionPartTwo()
+	solution := SolutionPartTwo()
 	expected := 230
 
 	if solution != expected {
@@ -30,4 +26,3 @@ func TestExampleSolutionDayTwo(t *testing.T) {
 	}
 
 }
-
