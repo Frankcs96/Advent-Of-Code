@@ -1,6 +1,7 @@
-package main
+package day02_test
 
 import (
+	. "github.com/Frankcs96/Advent-Of-Code-2021-/day02"
 	"testing"
 )
 

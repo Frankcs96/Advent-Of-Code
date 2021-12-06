@@ -1,4 +1,4 @@
-package main
+package day05
 
 import (
 	"bufio"
@@ -22,36 +22,36 @@ func Solution(isPartOne bool) int {
 	for _, line := range filteredLines {
 
 		point := Point{}
-		firstPoint := Point{x: line.x1, y: line.y1}
+		firstPoint := Point{X: line.X1, Y: line.Y1}
 		paths[firstPoint] = paths[firstPoint] + 1
 
-		for line.x1 != line.x2 || line.y1 != line.y2 {
+		for line.X1 != line.X2 || line.Y1 != line.Y2 {
 
-			if line.x1 > line.x2 {
+			if line.X1 > line.X2 {
 				// x1 goes down
 
-				point.x = line.x1 - 1
-				point.y = line.y1
+				point.X = line.X1 - 1
+				point.Y = line.Y1
 
-				line.x1--
-
-			}
-			if line.y1 > line.y2 {
-				point.x = line.x1
-				point.y = line.y1 - 1
-				line.y1--
-			}
-
-			if line.x1 < line.x2 {
-				point.x = line.x1 + 1
-				point.y = line.y1
-				line.x1++
+				line.X1--
 
 			}
-			if line.y1 < line.y2 {
-				point.x = line.x1
-				point.y = line.y1 + 1
-				line.y1++
+			if line.Y1 > line.Y2 {
+				point.X = line.X1
+				point.Y = line.Y1 - 1
+				line.Y1--
+			}
+
+			if line.X1 < line.X2 {
+				point.X = line.X1 + 1
+				point.Y = line.Y1
+				line.X1++
+
+			}
+			if line.Y1 < line.Y2 {
+				point.X = line.X1
+				point.Y = line.Y1 + 1
+				line.Y1++
 			}
 
 			paths[point] = paths[point] + 1
@@ -82,7 +82,7 @@ func FilterDiagonalLines(input []Line) []Line {
 
 	for _, line := range input {
 
-		if line.x1 == line.x2 || line.y1 == line.y2 {
+		if line.X1 == line.X2 || line.Y1 == line.Y2 {
 			filteredLines = append(filteredLines, line)
 		}
 	}
@@ -109,14 +109,14 @@ func GetInput(filename string) []Line {
 		re := regexp.MustCompile("[0-9]+")
 		parsedStr := re.FindAllString(val, -1)
 
-		parsed := stringArrayToInt(parsedStr)
+		parsed := StringArrayToInt(parsedStr)
 		for i := 0; i < len(parsed); i += 4 {
 
 			line := Line{
-				x1: parsed[i],
-				y1: parsed[i+1],
-				x2: parsed[i+2],
-				y2: parsed[i+3],
+				X1: parsed[i],
+				Y1: parsed[i+1],
+				X2: parsed[i+2],
+				Y2: parsed[i+3],
 			}
 			lines = append(lines, line)
 		}
@@ -128,7 +128,7 @@ func GetInput(filename string) []Line {
 	return lines
 }
 
-func stringArrayToInt(parsedStr []string) []int {
+func StringArrayToInt(parsedStr []string) []int {
 	var intArray []int
 	for _, v := range parsedStr {
 		number, err := strconv.Atoi(v)
@@ -141,12 +141,12 @@ func stringArrayToInt(parsedStr []string) []int {
 }
 
 type Point struct {
-	x int
-	y int
+	X int
+	Y int
 }
 type Line struct {
-	x1 int
-	y1 int
-	x2 int
-	y2 int
+	X1 int
+	Y1 int
+	X2 int
+	Y2 int
 }

@@ -1,12 +1,13 @@
-package main
+package day05_test
 
 import (
 	"reflect"
 	"testing"
+
+	. "github.com/Frankcs96/Advent-Of-Code-2021-/day05"
 )
 
 func TestExampleSolution(t *testing.T) {
-
 	solution := Solution(true)
 
 	expected := 5
@@ -33,7 +34,7 @@ func TestStringArrayToInt(t *testing.T) {
 	input := []string{"2", "3", "123", "1394"}
 	expected := []int{2, 3, 123, 1394}
 
-	solution := stringArrayToInt(input)
+	solution := StringArrayToInt(input)
 
 	if !reflect.DeepEqual(expected, solution) {
 		t.Errorf("fail expecting %d got %d", expected, solution)
@@ -43,11 +44,11 @@ func TestStringArrayToInt(t *testing.T) {
 
 func TestFilterHorizontalLines(t *testing.T) {
 
-	lines := []Line{{x1: 20, y1: 31, x2: 11, y2: 41}, {x1: 98, y1: 11, x2: 98, y2: 41}, {x1: 3, y1: 1234, x2: 0, y2: 998}, {x1: 1234, y1: 51, x2: 915, y2: 51}}
+	lines := []Line{{X1: 20, Y1: 31, X2: 11, Y2: 41}, {X1: 98, Y1: 11, X2: 98, Y2: 41}, {X1: 3, Y1: 1234, X2: 0, Y2: 998}, {X1: 1234, Y1: 51, X2: 915, Y2: 51}}
 
 	filterLines := FilterDiagonalLines(lines)
 
-	expected := []Line{{x1: 98, y1: 11, x2: 98, y2: 41}, {x1: 1234, y1: 51, x2: 915, y2: 51}}
+	expected := []Line{{X1: 98, Y1: 11, X2: 98, Y2: 41}, {X1: 1234, Y1: 51, X2: 915, Y2: 51}}
 
 	if !reflect.DeepEqual(expected, filterLines) {
 		t.Errorf("fail expecting %d got %d", expected, filterLines)

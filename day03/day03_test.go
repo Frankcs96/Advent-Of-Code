@@ -1,7 +1,9 @@
-package main
+package day03_test
 
 import (
 	"testing"
+
+	. "github.com/Frankcs96/Advent-Of-Code-2021-/day03"
 )
 
 func TestExampleSolution(t *testing.T) {
