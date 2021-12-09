@@ -39,7 +39,7 @@ func TestSolution(t *testing.T) {
 func TestSolutionPartTwo(t *testing.T) {
 
 	solution := SolutionPartTwo("input.txt")
-	expected := -1
+	expected := 933305
 
 	if solution != expected {
 		t.Errorf("fail expecting %d got %d", expected, solution)
