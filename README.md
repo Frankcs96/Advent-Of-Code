@@ -11,8 +11,7 @@ My Solutions to advent of code 2021!
 - [Day 6](https://github.com/Frankcs96/Advent-Of-Code-2021-/tree/main/day06) 🌟 🌟
 - [Day 7](https://github.com/Frankcs96/Advent-Of-Code-2021-/tree/main/day07) 🌟 🌟
 - [Day 8](https://github.com/Frankcs96/Advent-Of-Code-2021-/tree/main/day08) 🌟 🌟
-- [Day 8](#)
-- [Day 9](#)
+- [Day 9](https://github.com/Frankcs96/Advent-Of-Code-2021-/tree/main/day09) 🌟 🌟
 - [Day 10](#)
 - [Day 11](#)
 - [Day 12](#)
