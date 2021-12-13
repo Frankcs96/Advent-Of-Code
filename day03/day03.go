@@ -55,7 +55,7 @@ func SolutionPartTwo() int {
 	report := GetReport("input.txt")
 	bitPosition := 0
 	numberOfOnes := 0
-	numberOfCeros := 0
+	numberOfZeros := 0
 	for len(report) > 1 {
 
 		for _, number := range report {
@@ -65,7 +65,7 @@ func SolutionPartTwo() int {
 			if string(bit) == "1" {
 				numberOfOnes++
 			} else {
-				numberOfCeros++
+				numberOfZeros++
 			}
 
 		}
@@ -73,7 +73,7 @@ func SolutionPartTwo() int {
 		var pv []string
 		for _, number := range report {
 
-			if numberOfCeros > numberOfOnes {
+			if numberOfZeros > numberOfOnes {
 				if string(number[bitPosition]) == "0" {
 					pv = append(pv, number)
 				}
@@ -86,7 +86,7 @@ func SolutionPartTwo() int {
 		}
 		report = pv
 		bitPosition++
-		numberOfCeros = 0
+		numberOfZeros = 0
 		numberOfOnes = 0
 		pv = nil
 	}
@@ -105,7 +105,7 @@ func SolutionPartTwo() int {
 			if string(bit) == "1" {
 				numberOfOnes++
 			} else {
-				numberOfCeros++
+				numberOfZeros++
 			}
 
 		}
@@ -113,7 +113,7 @@ func SolutionPartTwo() int {
 		var pv []string
 		for _, number := range report {
 
-			if numberOfCeros > numberOfOnes {
+			if numberOfZeros > numberOfOnes {
 				if string(number[bitPosition]) == "1" {
 					pv = append(pv, number)
 				}
@@ -126,7 +126,7 @@ func SolutionPartTwo() int {
 		}
 		report = pv
 		bitPosition++
-		numberOfCeros = 0
+		numberOfZeros = 0
 		numberOfOnes = 0
 		pv = nil
 	}

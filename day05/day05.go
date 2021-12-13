@@ -2,10 +2,10 @@ package day05
 
 import (
 	"bufio"
+	. "github.com/Frankcs96/Advent-Of-Code-2021-/utils"
 	"log"
 	"os"
 	"regexp"
-	"strconv"
 )
 
 func Solution(isPartOne bool) int {
@@ -126,18 +126,6 @@ func GetInput(filename string) []Line {
 		log.Fatal(err)
 	}
 	return lines
-}
-
-func StringArrayToInt(parsedStr []string) []int {
-	var intArray []int
-	for _, v := range parsedStr {
-		number, err := strconv.Atoi(v)
-		if err != nil {
-			log.Fatal("cannot parse str to int ")
-		}
-		intArray = append(intArray, number)
-	}
-	return intArray
 }
 
 type Point struct {

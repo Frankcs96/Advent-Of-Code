@@ -109,18 +109,6 @@ func GetInput(filename string) []Path {
 	return input
 }
 
-func StringIsInArray(value string, array []string) bool {
-
-	for _, v := range array {
-
-		if v == value {
-
-			return true
-		}
-	}
-	return false
-}
-
 func MakeLowerList(data map[string][]string) []string {
 	lowerList := []string{}
 	for key := range data {

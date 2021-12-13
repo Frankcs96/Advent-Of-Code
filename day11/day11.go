@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"log"
 	"os"
-	"strconv"
 )
 
 func Solution(filename string) int {
@@ -13,7 +12,7 @@ func Solution(filename string) int {
 	solution := 0
 	for i := 0; i < 100; i++ {
 
-		explosions := []Position{}
+		var explosions []Position
 		for i, row := range cave {
 
 			for j := range row {
@@ -42,7 +41,7 @@ func SolutionPartTwo(filename string) int {
 
 	for !isSync {
 
-		explosions := []Position{}
+		var explosions []Position
 		for i, row := range cave {
 
 			for j := range row {
@@ -197,7 +196,7 @@ func GetCave(input []string) [10][10]int {
 	for i, line := range input {
 
 		for j, val := range line {
-			//int(val) return the ascii code so we substract 48 because we know that 0 is represented by 48
+			//int(val) return the ascii code so we subtract 48 because we know that 0 is represented by 48
 			number := int(val) - 48
 
 			cave[i][j] = number
@@ -209,7 +208,7 @@ func GetCave(input []string) [10][10]int {
 
 func GetInput(filename string) []string {
 
-	input := []string{}
+	var input []string
 	f, err := os.Open(filename)
 
 	if err != nil {
@@ -229,18 +228,6 @@ func GetInput(filename string) []string {
 		log.Fatal(err)
 	}
 	return input
-}
-
-func StringArrayToInt(parsedStr []string) []int {
-	var intArray []int
-	for _, v := range parsedStr {
-		number, err := strconv.Atoi(v)
-		if err != nil {
-			log.Fatal("cannot parse str to int ")
-		}
-		intArray = append(intArray, number)
-	}
-	return intArray
 }
 
 type Position struct {

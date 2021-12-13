@@ -3,6 +3,7 @@ package day13
 import (
 	"bufio"
 	"fmt"
+	. "github.com/Frankcs96/Advent-Of-Code-2021-/utils"
 	"log"
 	"os"
 	"regexp"
@@ -171,16 +172,4 @@ type Point struct {
 type Instruction struct {
 	Value string
 	Edge  string
-}
-
-func StringArrayToInt(parsedStr []string) []int {
-	var intArray []int
-	for _, v := range parsedStr {
-		number, err := strconv.Atoi(v)
-		if err != nil {
-			log.Fatal("cannot parse str to int ")
-		}
-		intArray = append(intArray, number)
-	}
-	return intArray
 }

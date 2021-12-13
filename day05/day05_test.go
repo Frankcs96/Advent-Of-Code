@@ -29,19 +29,6 @@ func TestExampleSolutionPartTwo(t *testing.T) {
 
 }
 
-func TestStringArrayToInt(t *testing.T) {
-
-	input := []string{"2", "3", "123", "1394"}
-	expected := []int{2, 3, 123, 1394}
-
-	solution := StringArrayToInt(input)
-
-	if !reflect.DeepEqual(expected, solution) {
-		t.Errorf("fail expecting %d got %d", expected, solution)
-	}
-
-}
-
 func TestFilterHorizontalLines(t *testing.T) {
 
 	lines := []Line{{X1: 20, Y1: 31, X2: 11, Y2: 41}, {X1: 98, Y1: 11, X2: 98, Y2: 41}, {X1: 3, Y1: 1234, X2: 0, Y2: 998}, {X1: 1234, Y1: 51, X2: 915, Y2: 51}}

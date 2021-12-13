@@ -2,10 +2,10 @@ package day04
 
 import (
 	"bufio"
+	. "github.com/Frankcs96/Advent-Of-Code-2021-/utils"
 	"log"
 	"os"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
@@ -172,7 +172,7 @@ func CheckIfArrayContainsArray(row []int, validNumbers []int) bool {
 
 func ParseData(filename string) []string {
 
-	input := []string{}
+	var input []string
 	f, err := os.Open(filename)
 
 	if err != nil {
@@ -218,7 +218,7 @@ func GetBoards(input []string) [][5][5]int {
 	allNumbersIndex := 0
 	numberOfBoards := len(allNumbers) / 25
 
-	//3d aray wth first time using it :_)
+	//3d array wth first time using it :_)
 	var boards [][5][5]int
 	for k := 0; k < numberOfBoards; k++ {
 
@@ -236,18 +236,4 @@ func GetBoards(input []string) [][5][5]int {
 	}
 
 	return boards
-}
-
-func StringArrayToInt(stringArray []string) []int {
-
-	var numbers []int
-	for _, v := range stringArray {
-
-		number, err := strconv.Atoi(v)
-		if err != nil {
-			log.Fatal("cannot cast string to int")
-		}
-		numbers = append(numbers, number)
-	}
-	return numbers
 }

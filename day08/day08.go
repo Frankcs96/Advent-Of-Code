@@ -45,7 +45,7 @@ func SolutionPartTwo(filename string) int {
 		outputs = strings.Split(entry.Output, " ")
 		topWire := CalculateTopWire(signalPatterns)
 		bottomWire := CalculateBottomWire(signalPatterns, topWire)
-		bottomLeftWire := CalculateBotomLeftWire(signalPatterns, bottomWire, topWire)
+		bottomLeftWire := CalculateBottomLeftWire(signalPatterns, bottomWire, topWire)
 		upperRightWire := calculateTopRight(signalPatterns)
 		bottomRightWire := calculateBottomRightWire(signalPatterns, upperRightWire)
 		middleWire := calculateMiddleWire(signalPatterns, upperRightWire, bottomLeftWire)
@@ -245,7 +245,7 @@ func calculateTopRight(signalPatterns []string) string {
 	return solution
 }
 
-func CalculateBotomLeftWire(signalPatterns []string, bottomWire string, topWire string) string {
+func CalculateBottomLeftWire(signalPatterns []string, bottomWire string, topWire string) string {
 	var wiresForEight string
 	var wiresForNine string
 

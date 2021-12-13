@@ -2,6 +2,7 @@ package day09
 
 import (
 	"bufio"
+	. "github.com/Frankcs96/Advent-Of-Code-2021-/utils"
 	"log"
 	"os"
 	"sort"
@@ -45,7 +46,7 @@ func SolutionPartTwo(filename string) int {
 
 	input := GetInput(filename)
 
-	lowPoints := []LowPoint{}
+	var lowPoints []LowPoint
 
 	for i := 0; i < len(input); i++ {
 
@@ -65,11 +66,10 @@ func SolutionPartTwo(filename string) int {
 		}
 
 	}
-
-	basinsLenght := []int{}
+	var basinsLength []int
 	for _, lowPoint := range lowPoints {
 
-		visitedPoints := []VisitedPoint{}
+		var visitedPoints []VisitedPoint
 		counter := 0
 		for y := 0; y < len(input); y++ {
 
@@ -78,7 +78,7 @@ func SolutionPartTwo(filename string) int {
 				if lowPoint.PositionX == x && lowPoint.PositionY == y {
 
 					counter = calculateBasins(x, y, input, lowPoint.Value, &visitedPoints)
-					basinsLenght = append(basinsLenght, counter)
+					basinsLength = append(basinsLength, counter)
 				}
 
 			}
@@ -87,12 +87,12 @@ func SolutionPartTwo(filename string) int {
 
 	}
 
-	sort.Ints(basinsLenght)
+	sort.Ints(basinsLength)
 
 	solution := 1
-	for i := len(basinsLenght) - 1; i > len(basinsLenght)-4; i-- {
+	for i := len(basinsLength) - 1; i > len(basinsLength)-4; i-- {
 
-		solution *= basinsLenght[i]
+		solution *= basinsLength[i]
 	}
 
 	return solution
@@ -324,24 +324,12 @@ func GetInput(filename string) []string {
 	return input
 }
 
-func StringArrayToInt(parsedStr []string) []int {
-	var intArray []int
-	for _, v := range parsedStr {
-		number, err := strconv.Atoi(v)
-		if err != nil {
-			log.Fatal("cannot parse str to int ")
-		}
-		intArray = append(intArray, number)
-	}
-	return intArray
-}
-
 func IsLowPoint(adyacents []int, point int) bool {
 
 	isLowPoint := true
-	for _, adyacent := range adyacents {
+	for _, adjacent := range adyacents {
 
-		if point >= adyacent {
+		if point >= adjacent {
 			isLowPoint = false
 		}
 	}
