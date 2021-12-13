@@ -14,202 +14,88 @@ func Solution(filename string) int {
 
 	points, instructions := GetInput(filename)
 
-	x := 0
-	y := 0
-	for _, point := range points {
-
-		if point.X > x {
-			x = point.X
-		}
-		if point.Y > y {
-			y = point.Y
-		}
-
-	}
-	grid := make([][]string, y+1)
-	for i := range grid {
-		grid[i] = make([]string, x+1)
-	}
-
-	for i := 0; i < len(grid); i++ {
-
-		for j := 0; j < len(grid[0]); j++ {
-
-			grid[i][j] = "."
-		}
-
-	}
-	for _, point := range points {
-
-		grid[point.Y][point.X] = "#"
-
-	}
-
 	instruction := instructions[0]
+	foldedPoints := make(map[Point]bool)
 	if instruction.Edge == "x" {
-
-		grid = FoldVertical(grid, instruction.Value)
-
+		edgeLine, _ := strconv.Atoi(instruction.Value)
+		for _, point := range points {
+			if point.X > edgeLine {
+				foldedPoint := Point{X: edgeLine*2 - point.X, Y: point.Y}
+				foldedPoints[foldedPoint] = true
+			} else {
+				foldedPoints[point] = true
+			}
+		}
 	} else {
-
-		grid = FoldHorizontal(grid, instruction.Value)
-	}
-	counter := 0
-	for i := 0; i < len(grid); i++ {
-		for j := 0; j < len(grid[0]); j++ {
-
-			if grid[i][j] == "#" {
-				counter++
+		edgeLine, _ := strconv.Atoi(instruction.Value)
+		for _, point := range points {
+			if point.Y > edgeLine {
+				foldedPoint := Point{X: point.X, Y: edgeLine*2 - point.Y}
+				foldedPoints[foldedPoint] = true
+			} else {
+				foldedPoints[point] = true
 			}
 		}
 
 	}
-
-	return counter
-}
-
-func FoldVertical(grid [][]string, s string) [][]string {
-
-	value, _ := strconv.Atoi(s)
-	points := []Point{}
-	for i := 0; i < len(grid); i++ {
-
-		for j := value; j < len(grid[0]); j++ {
-
-			if grid[i][j] == "#" {
-				point := Point{X: j, Y: i}
-
-				points = append(points, point)
-			}
-		}
-	}
-
-	newGrid := [][]string{}
-
-	for _, v := range grid {
-
-		newGrid = append(newGrid, v[:value])
-	}
-
-	for _, point := range points {
-
-		grid[point.Y][len(grid[0])-point.X] = "#"
-
-	}
-	return newGrid
-}
-
-func FoldHorizontal(grid [][]string, s string) [][]string {
-
-	value, _ := strconv.Atoi(s)
-	points := []Point{}
-	for i := value; i < len(grid); i++ {
-
-		for j := 0; j < len(grid[0]); j++ {
-
-			if grid[i][j] == "#" {
-				point := Point{X: j, Y: i}
-
-				points = append(points, point)
-			}
-		}
-	}
-
-	newGrid := grid[:value]
-
-	for _, point := range points {
-
-		grid[len(grid)-point.Y-1][point.X] = "#"
-
-	}
-	return newGrid
-
+	return len(foldedPoints)
 }
 
 func SolutionPartTwo(filename string) int {
-
 	points, instructions := GetInput(filename)
 
-	x := 0
-	y := 0
-	for _, point := range points {
-
-		if point.X > x {
-			x = point.X
-		}
-		if point.Y > y {
-			y = point.Y
-		}
-
-	}
-	grid := make([][]string, y+1)
+	var grid = make([][]int, 6)
 	for i := range grid {
-		grid[i] = make([]string, x+1)
+		grid[i] = make([]int, 39)
 	}
 
-	for i := 0; i < len(grid); i++ {
-
-		for j := 0; j < len(grid[0]); j++ {
-
-			grid[i][j] = "."
-		}
-
-	}
 	for _, point := range points {
+		x := point.X
+		y := point.Y
+		for _, instruction := range instructions {
+			if instruction.Edge == "x" {
+				edgeLine, _ := strconv.Atoi(instruction.Value)
 
-		grid[point.Y][point.X] = "#"
+				if x > edgeLine {
 
-	}
-
-	for _, instruction := range instructions {
-
-		if instruction.Edge == "x" {
-
-			grid = FoldVertical(grid, instruction.Value)
-
-		} else {
-
-			grid = FoldHorizontal(grid, instruction.Value)
-		}
-	}
-	counter := 0
-	for i := 0; i < len(grid); i++ {
-		for j := 0; j < len(grid[0]); j++ {
-
-			if grid[i][j] == "#" {
-				counter++
-			}
-		}
-
-	}
-
-	return counter
-}
-
-func printGrid(grid [][]string) {
-
-	for i := 0; i < len(grid); i++ {
-
-		for j := 0; j < len(grid[0]); j++ {
-
-			if grid[i][j] == "#" {
-
-				fmt.Print("#")
+					x = 2*edgeLine - x
+				}
 			} else {
-				fmt.Print(" ")
+				edgeLine, _ := strconv.Atoi(instruction.Value)
+				if y > edgeLine {
+
+					y = 2*edgeLine - y
+
+				}
+
+			}
+
+		}
+		grid[y][x] = 8
+	}
+
+	result := 0
+	for _, row := range grid {
+		for _, v := range row {
+			if v == 8 {
+				result++
+				fmt.Print("█")
+			} else {
+				fmt.Print("░")
+
 			}
 		}
 
 		fmt.Println("")
-
 	}
 
+	return result
 }
 
 func GetInput(filename string) ([]Point, []Instruction) {
 
-	input := []string{}
-	points := []Point{}
+	var input []string
+	var points []Point
 	f, err := os.Open(filename)
 
 	if err != nil {
@@ -227,20 +113,18 @@ func GetInput(filename string) ([]Point, []Instruction) {
 
 	indexEmpty := 0
 	for i, v := range input {
-
 		if v == "" {
-
 			indexEmpty = i
 		}
 	}
 
-	stringNumbers := []string{}
+	var stringNumbers []string
 	for i := 0; i < indexEmpty; i++ {
 
 		stringNumbers = append(stringNumbers, strings.Split(input[i], ",")...)
 	}
 
-	numbers := []int{}
+	var numbers []int
 	numbers = StringArrayToInt(stringNumbers)
 
 	for i := 0; i < len(numbers); i += 2 {
@@ -248,14 +132,14 @@ func GetInput(filename string) ([]Point, []Instruction) {
 		point := Point{X: numbers[i], Y: numbers[i+1]}
 		points = append(points, point)
 	}
-	instructionsString := []string{}
+	var instructionsString []string
 
 	for i := indexEmpty + 1; i < len(input); i++ {
 
 		instructionsString = append(instructionsString, input[i])
 	}
 
-	instructions := []Instruction{}
+	var instructions []Instruction
 	re := regexp.MustCompile("[0-9]+")
 	for _, instruction := range instructionsString {
 
